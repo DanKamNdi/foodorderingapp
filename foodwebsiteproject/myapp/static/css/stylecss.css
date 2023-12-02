@@ -704,3 +704,9 @@ section{
     }
 
 }
+
+#image-div{
+        min-height: 200px; /* Adjust the value according to your needs */
+        border: 1px solid #ccc; /* Optional: Add border for visibility */
+        padding: 10px; /* Optional: Add padding for spacing */
+    }
