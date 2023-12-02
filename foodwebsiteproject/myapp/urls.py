@@ -12,6 +12,7 @@ from django.urls import path
 from .views import home, add_to_cart, view_cart, remove_from_cart, checkout
 
 urlpatterns = [
+    path('', home, name="home"),
     path('home', home, name='index'),
     path('add-to-cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('view-cart/', view_cart, name='view_cart'),
