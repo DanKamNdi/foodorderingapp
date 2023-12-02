@@ -1,0 +1,30 @@
+<!-- cart.html -->
+{% extends 'base.html' %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+
+    <div class="container m-5 bg-light d-flex align-items-center">
+    <div class="container m-5" >
+        <h2>Your Cart</h2>
+
+        {% if cart_items %}
+            {% for item in cart_items %}
+                    <div class="m-5">
+                        <h3>{{ item.product.p_title }} - Quantity: {{ item.quantity }} - Subtotal: ${{ item.total }}</h3>
+                    <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                            {% csrf_token %}
+                            <button class="mt-4 mb-4 btn btn-danger" type="submit">Remove</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            <h1 class="mt-4">Total Cost: ${{ cart.total_cost }}</h1>
+            <a class="mt-4 btn btn-primary" href="{% url 'checkout' %}">Proceed to Checkout</a>
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </div>
+    </div>
+
+{% endblock %}

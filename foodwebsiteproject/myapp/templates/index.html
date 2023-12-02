@@ -1,0 +1,311 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home - Tracy Atieno{% endblock %}
+
+{% block content %}
+    <!-- Your home page content goes here -->
+
+    <header class="header">
+
+    <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> Tracy Atieno  </a>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+{#        <a href="#features">features</a>#}
+        <a href="#products">products</a>
+{#        <a href="#categories">categories</a>#}
+        <a href="#review">review</a>
+{#        <a href="#blogs">blogs</a>#}
+    </nav>
+
+    <div class="icons">
+       {% comment %}<div class="fas-fa-bars" id="menu-btn"></div>
+      <div class="fas fa-search" id="search-btn"></div>{% endcomment %}
+        <a class="btn fas fa-shopping-cart" id="cart-btn" href="{% url 'view_cart' %}">Cart</a>
+{#        <a href="logout"> <div class="fas fa-user" id="login-btn"></div></a>#}
+{#        <label for="lname"></label><input type="text" id="lname" value={{ab}} name="lname" disabled><br><br>#}
+    </div>
+
+    <form action="" class="search-form">
+        <input type="search" id="search-box" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+    <div class="shopping-cart">
+        <div class="box">
+            <i class="fas fa-trash"></i>
+            <img src="../static/img/Matar-Paneer-1.jpg" alt="">
+            <div class="content">
+                <h3>Matar paneer</h3>
+                <span class="price"> &#8377 60/-</span>
+                <span class="quantity">qty : 1kg</span>
+            </div>
+        </div>
+        <div class="box">
+            <i class="fas fa-trash"></i>
+            <img src="../static/img/ladyfinger.webp" alt="">
+            <div class="content">
+                <h3> Fried - Bhindi</h3>
+                <span class="price"> &#8377 40 /-</span>
+                <span class="quantity">qty : 1kg</span>
+            </div>
+        </div>
+        <div class="box">
+            <i class="fas fa-trash"></i>
+            <img src="../static/img/pneer.jpg" alt="">
+            <div class="content">
+                <h3>paneer</h3>
+                <span class="price"> &#8377 150/-</span>
+                <span class="quantity">qty : 1kg</span>
+            </div>
+        </div>
+        <div class="total"> total :  &#8377 250/- </div>
+        <a href="#" class="btn">checkout</a>
+    </div>
+
+    <form action="" class="login-form">
+        <h3>login now</h3>
+        <label>
+            <input type="email" placeholder="your email" class="box">
+        </label>
+        <label>
+            <input type="password" placeholder="your password" class="box">
+        </label>
+        <p>forget your password <a href="#">click here</a></p>
+        <p>don't have an account <a href="#">create now</a></p>
+        <input type="submit" value="login now" class="btn">
+    </form>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3><span>WELCOME - BROWSE OUR FOOD LIST</span></h3>
+        <p>{{ds.description}}.</p>
+        <a href="#products" class="btn">Shop Now</a>
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- features section starts  -->
+
+{% comment %}<section class="features" id="features">
+
+    <h1 class="heading"> our <span>features</span> </h1>
+
+
+
+    <div class="box-container">
+
+        {% for n in fr %}
+
+
+
+        <div class="box">
+            <img src='media/{{n.fea_img}}' alt="">
+            <h3>{{n.title}}</h3>
+            <p>{{n.desc}}</p>
+            <a href="#" class="btn">read more</a>
+        </div>
+
+        {% endfor %}
+
+
+    </div>
+
+</section>{% endcomment %}
+
+<!-- features section ends -->
+
+<!-- products section starts  -->
+
+<section class="products" id="products">
+
+    <h1 class="heading"> our <span>products</span> </h1>
+
+    <div class="swiper product-slider">
+
+        <div class="swiper-wrapper">
+
+            {% for n in pr %}
+
+            <div class="swiper-slide box">
+{#            {% media n.p_image %}#}
+                <img src="media/{{ n.p_image }}" alt="" width="200px">
+                <h3>{{n.p_title}}</h3>
+                <p class="price"> &#8377 {{n.p_price}} </p>
+                <p>Debug: {{ n.id }}</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+{#                <form action="{% url 'add_to_cart' product.id %}">#}
+{#                    {% csrf_token %}#}
+{#                    {{ form.as_p }}#}
+{#                    <button type="submit" class="btn">Add To Cart</button>#}
+{#                </form>#}
+{#                <div></div>#}
+{#                <a href="{% url 'add_to_cart' product.id %}">Add to Cart</a>#}
+{#                <a href="#" class="btn">Add To Cart</a>#}
+            <form method="post" action="{% url 'add_to_cart' n.id %}">
+            {% csrf_token %}
+                <button class="btn" type="submit">Add To Cart</button>
+        </form>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</section>
+
+<!-- products section ends -->
+
+<!-- categories section starts  -->
+
+{% comment %}<section class="categories" id="categories">
+
+    <h1 class="heading"> product <span>categories</span> </h1>
+
+    <div class="box-container">
+
+        {% for n in cr  %}
+
+        <div class="box">
+            <img src="media/{{n.img}}" alt="">
+            <h3>{{n.title}}</h3>
+            <p>upto {{n.discount}} % off</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+
+        {% endfor %}
+
+
+    </div>
+
+</section>{% endcomment %}
+
+<!-- categories section ends -->
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+    <h1 class="heading"> customer's <span>review</span> </h1>
+
+    <div class="swiper review-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide box">
+                <img src="../static/image/pic-1.png" alt="">
+                <p>Effortless shopping at my fingertips! This grocery website delivers fresh produce and pantry staples promptly, making meal planning a breeze</p>
+                <h3>john deo</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="../static/image/pic-2.png" alt="">
+                <p>Variety is impressive, prices are competitive—highly recommend..</p>
+                <h3>john deo</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="../static/image/pic-3.png" alt="">
+                <p>Quick and reliable service, my go-to for groceries!.</p>
+                <h3>john deo</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="../static/image/pic-4.png" alt="">
+                <p>Convenient online shopping, but occasional delivery delays.</p>
+                <h3>john deo</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- review section ends -->
+
+
+<!-- blogs section starts  -->
+
+
+
+{% comment %}<section class="blogs" id="blogs">
+
+    <h1 class="heading"> our <span>blogs</span> </h1>
+
+
+
+    <div class="box-container">
+
+        {% for n in bl  %}
+
+
+        <div class="box">
+            <img src="media/{{n.image}}" alt="">
+            <div class="content">
+                <div class="icons">
+                    <a href="#"> <i class="fas fa-user"></i> by user </a>
+                    <a href="#"> <i class="fas fa-calendar"></i> 1st may, 2022 </a>
+                </div>
+                <h3>{{n.title}}</h3>
+                <p>{{n.desc}}.</p>
+                <a href="{{n.url}}" class="btn">read more</a>
+            </div>
+        </div>
+            {% endfor %}
+
+
+
+
+
+
+
+
+
+</div>
+</section>{% endcomment %}
+
+    <!-- ... -->
+{% endblock %}

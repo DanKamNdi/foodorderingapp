@@ -1,0 +1,94 @@
+{% load static %}
+
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Site{% endblock %}</title>
+    <!-- Add your common CSS links and styles here -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static '/css/stylecss.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap' %}">
+</head>
+<body class="m-5">
+
+    <!-- Header Section -->
+
+
+    <!-- Content Section -->
+    <div class="content mr-5">
+        {% block content %}
+
+
+        {% endblock %}
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <!-- Your footer content goes here -->
+
+
+<!-- footer section starts  -->
+
+
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3> groco <i class="fas fa-shopping-basket"></i> </h3>
+            <p>Contact For support and changes.</p>
+            <div class="share">
+                <a target="_blank" href="https://www.facebook.com" class="fab fa-facebook-f"> </a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
+                <a href="https://www.linkedin.com/" class="fab fa-linkedin"></a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="tel:+254712345678" class="links"> <i class="fas fa-phone"></i> +254712345678 </a>
+            <a href="https://mail.google.com/V" class="links"> <i class="fas fa-envelope"></i> tracyatieno@gmail.com </a>
+            <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> Nairobi, Kenya </a>
+        </div>
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> home </a>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> features </a>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> products </a>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> categories </a>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> review </a>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
+        </div>
+
+        <div class="box">
+            <h3>newsletter</h3>
+            <p>subscribe for latest updates</p>
+            <label>
+                <input type="email" placeholder="your email" class="email">
+            </label>
+            <input type="submit" value="subscribe" class="btn">
+            <img src="../static/image/payment.png" class="payment-img" alt="">
+        </div>
+
+    </div>
+
+    <div class="credit">  <span> all rights reserved by</span> |Tracy Atieno  </div>
+
+</section>
+
+<!-- footer section ends -->
+
+        <!-- ... -->
+    </footer>
+
+    <!-- Add your common JS scripts here -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
