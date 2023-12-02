@@ -75,3 +75,8 @@ def checkout(request):
         return render(request, 'checkout_complete.html', {'total_cost': total_cost})
 
     return render(request, 'checkout.html', {'cart': cart, 'total_cost': total_cost})
+
+
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'product_list.html', {'products': products})

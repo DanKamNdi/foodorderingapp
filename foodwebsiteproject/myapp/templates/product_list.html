@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block product_content %}
+    {% for product in pr %}
+    <div class="swiper-slide box">
+    <img src="{{ product.p_image.url }}" alt="{{ product.p_title }}">
+    <h2>{{ product.p_title }}</h2>
+    <p class="price"> Kes {{product.p_price}} </p>
+    <!-- Add other product details as needed -->
+    <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+    <form method="post" action="{% url 'add_to_cart' n.id %}">
+            {% csrf_token %}
+                <button class="btn" type="submit">Add To Cart</button>
+        </form>
+    </div>
+{% endfor %}
+{% endblock %}
+

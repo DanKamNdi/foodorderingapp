@@ -139,7 +139,7 @@
 
             <div class="swiper-slide box">
 {#            {% media n.p_image %}#}
-                <img src="media/{{ n.p_image }}" alt="" width="200px">
+                <img src="/static/images/media{{ n.p_image.url }}" alt="" width="200px">
                 <h3>{{n.p_title}}</h3>
                 <p class="price"> &#8377 {{n.p_price}} </p>
                 <p>Debug: {{ n.id }}</p>
@@ -165,6 +165,8 @@
             </div>
         </div>
     {% endfor %}
+
+{#    {% block content %}{% endblock %}#}
     </div>
 </section>
 

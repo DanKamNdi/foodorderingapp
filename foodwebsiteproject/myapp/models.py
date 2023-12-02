@@ -12,7 +12,7 @@ class Blog(models.Model):
 class Product(models.Model):
     p_title = models.CharField(max_length=50)
     p_price = models.IntegerField()
-    p_image = models.FileField(upload_to="products/", max_length=200, null=True)
+    p_image = models.FileField(upload_to="myapp/static/images/products", max_length=200, null=True)
 
 
 # models.py
